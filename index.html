@@ -1,0 +1,723 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Kysira — SQL injection, killed in under 100ms</title>
+<meta name="description" content="Kysira is an AI reverse proxy that scores every request with a fine-tuned DistilBERT classifier and kills SQL injection attacks in under 100ms — before they reach your database." />
+<meta name="theme-color" content="#0a0f0e" />
+
+<!-- Open Graph -->
+<meta property="og:title" content="Kysira — SQL injection, killed in under 100ms" />
+<meta property="og:description" content="An AI reverse proxy that scores every request and kills SQL injection at machine speed." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://kysira.github.io/" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg: #07100e;
+    --bg-elev: #0d1816;
+    --bg-panel: #101d1a;
+    --border: #1b2c28;
+    --border-strong: #2a4239;
+    --text: #e6f0ec;
+    --text-muted: #7e948c;
+    --text-dim: #56655f;
+    --green: #3fdc7e;
+    --green-dim: #1f8a4a;
+    --red: #ff4d6d;
+    --red-dim: #8b1f33;
+    --amber: #ffb84d;
+    --blue: #6ec1ff;
+    --max: 1140px;
+    --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    --sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    background-image:
+      radial-gradient(1200px 600px at 80% -10%, rgba(63,220,126,0.07), transparent 60%),
+      radial-gradient(900px 500px at 0% 30%, rgba(110,193,255,0.04), transparent 60%);
+  }
+  a { color: var(--green); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  ::selection { background: rgba(63,220,126,0.3); color: var(--text); }
+
+  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+
+  /* ---------- Nav ---------- */
+  nav.top {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(7,16,14,0.85);
+    backdrop-filter: saturate(140%) blur(10px);
+    -webkit-backdrop-filter: saturate(140%) blur(10px);
+    border-bottom: 1px solid var(--border);
+  }
+  nav.top .wrap {
+    display: flex; align-items: center; justify-content: space-between;
+    height: 64px;
+  }
+  .brand {
+    display: flex; align-items: center; gap: 10px;
+    font-family: var(--mono); font-weight: 600; font-size: 17px;
+    color: var(--text); letter-spacing: -0.01em;
+  }
+  .brand:hover { text-decoration: none; }
+  .brand-dot {
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--green);
+    box-shadow: 0 0 12px rgba(63,220,126,0.7);
+    animation: pulse 2.4s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.55; transform: scale(0.85); }
+  }
+  nav.top .links { display: flex; gap: 28px; align-items: center; }
+  nav.top .links a {
+    color: var(--text-muted); font-size: 14px; font-weight: 500;
+  }
+  nav.top .links a:hover { color: var(--text); text-decoration: none; }
+  nav.top .cta {
+    background: var(--green); color: #042210;
+    padding: 8px 16px; border-radius: 6px;
+    font-weight: 600; font-size: 14px;
+  }
+  nav.top .cta:hover { background: #5fe896; text-decoration: none; }
+  @media (max-width: 640px) {
+    nav.top .links a:not(.cta) { display: none; }
+  }
+
+  /* ---------- Hero ---------- */
+  section.hero {
+    padding: 96px 0 80px;
+    border-bottom: 1px solid var(--border);
+    position: relative; overflow: hidden;
+  }
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: var(--mono); font-size: 12px;
+    color: var(--green); letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 6px 12px; border-radius: 999px;
+    background: rgba(63,220,126,0.08);
+    border: 1px solid rgba(63,220,126,0.25);
+  }
+  .eyebrow::before {
+    content: ""; width: 6px; height: 6px; border-radius: 50%;
+    background: var(--green); box-shadow: 0 0 8px var(--green);
+  }
+  h1.headline {
+    font-size: clamp(38px, 6vw, 68px);
+    line-height: 1.05; letter-spacing: -0.025em; font-weight: 700;
+    margin: 24px 0 20px; max-width: 920px;
+  }
+  h1.headline em {
+    font-style: normal; color: var(--green);
+    text-shadow: 0 0 24px rgba(63,220,126,0.3);
+  }
+  h1.headline s {
+    text-decoration: line-through;
+    text-decoration-color: var(--red);
+    text-decoration-thickness: 4px;
+    color: var(--text-dim);
+  }
+  .lede {
+    font-size: clamp(17px, 1.6vw, 20px);
+    color: var(--text-muted); max-width: 700px; margin: 0 0 36px;
+  }
+  .lede strong { color: var(--text); font-weight: 600; }
+  .hero-cta { display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 13px 22px; border-radius: 8px;
+    font-weight: 600; font-size: 15px;
+    transition: transform 0.08s ease, background 0.15s ease, border-color 0.15s ease;
+  }
+  .btn:hover { text-decoration: none; transform: translateY(-1px); }
+  .btn-primary {
+    background: var(--green); color: #042210;
+  }
+  .btn-primary:hover { background: #5fe896; }
+  .btn-ghost {
+    background: transparent; color: var(--text);
+    border: 1px solid var(--border-strong);
+  }
+  .btn-ghost:hover { border-color: var(--green); color: var(--green); }
+
+  /* Hero terminal panel */
+  .hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    gap: 56px; align-items: center;
+  }
+  @media (max-width: 900px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+  }
+  .terminal {
+    background: #060d0c;
+    border: 1px solid var(--border-strong);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 30px 80px -20px rgba(0,0,0,0.6),
+                0 0 0 1px rgba(63,220,126,0.05);
+    font-family: var(--mono);
+    font-size: 13px;
+    line-height: 1.7;
+  }
+  .term-bar {
+    background: #0c1614;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; gap: 10px;
+  }
+  .term-dots { display: flex; gap: 6px; }
+  .term-dots span {
+    width: 11px; height: 11px; border-radius: 50%;
+    background: #2c3a37;
+  }
+  .term-dots span:nth-child(1) { background: #ff5f56; }
+  .term-dots span:nth-child(2) { background: #ffbd2e; }
+  .term-dots span:nth-child(3) { background: #27c93f; }
+  .term-title {
+    color: var(--text-muted); font-size: 12px; margin-left: 8px;
+    flex: 1; text-align: center;
+  }
+  .term-body { padding: 18px 20px 22px; min-height: 280px; }
+  .term-line { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .term-line .ts { color: var(--text-dim); margin-right: 10px; }
+  .term-line .ip { color: var(--blue); margin-right: 10px; }
+  .term-line .method { color: var(--amber); margin-right: 8px; }
+  .term-line .path { color: var(--text); margin-right: 10px; }
+  .term-line .killed { color: var(--red); font-weight: 600; }
+  .term-line .passed { color: var(--green); font-weight: 600; }
+  .term-line .ms { color: var(--text-muted); margin-left: 8px; }
+  .term-feed { display: flex; flex-direction: column; gap: 4px; }
+  .term-feed .row { opacity: 0; transform: translateY(6px); transition: all 0.3s ease; }
+  .term-feed .row.show { opacity: 1; transform: translateY(0); }
+  .term-prompt { color: var(--green); margin-top: 16px; }
+  .term-prompt::before { content: "$ "; color: var(--text-dim); }
+  .term-prompt .cur {
+    display: inline-block; width: 8px; height: 14px;
+    background: var(--green); vertical-align: -2px; margin-left: 2px;
+    animation: blink 1s steps(2) infinite;
+  }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  /* ---------- Stats strip ---------- */
+  section.stats {
+    padding: 56px 0; border-bottom: 1px solid var(--border);
+  }
+  .stat-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
+  }
+  @media (max-width: 720px) {
+    .stat-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  .stat .num {
+    font-family: var(--mono);
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 600;
+    color: var(--green);
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+  .stat .num small {
+    color: var(--text-muted); font-size: 0.55em; margin-left: 4px; font-weight: 500;
+  }
+  .stat .label {
+    margin-top: 10px; color: var(--text-muted); font-size: 13px;
+    text-transform: uppercase; letter-spacing: 0.06em;
+  }
+
+  /* ---------- Section common ---------- */
+  section.block { padding: 96px 0; border-bottom: 1px solid var(--border); }
+  .section-eyebrow {
+    font-family: var(--mono); font-size: 12px; color: var(--green);
+    letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 14px;
+  }
+  h2 {
+    font-size: clamp(28px, 3.4vw, 40px);
+    line-height: 1.15; letter-spacing: -0.02em;
+    margin: 0 0 20px; font-weight: 700;
+  }
+  .lead {
+    font-size: 18px; color: var(--text-muted);
+    max-width: 720px; margin: 0 0 48px;
+  }
+
+  /* ---------- The problem ---------- */
+  .compare {
+    display: grid; grid-template-columns: 1fr 80px 1fr; gap: 0;
+    align-items: stretch; margin-top: 8px;
+  }
+  @media (max-width: 760px) {
+    .compare { grid-template-columns: 1fr; }
+    .compare .vs { display: none; }
+  }
+  .compare .col {
+    background: var(--bg-panel);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 32px 28px;
+    display: flex; flex-direction: column;
+  }
+  .compare .col.bad { border-color: rgba(255,77,109,0.25); }
+  .compare .col.good { border-color: rgba(63,220,126,0.25); }
+  .compare .col h3 {
+    margin: 0 0 6px; font-size: 14px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.08em;
+  }
+  .compare .col.bad h3 { color: var(--red); }
+  .compare .col.good h3 { color: var(--green); }
+  .compare .big {
+    font-family: var(--mono); font-size: clamp(36px, 5vw, 56px);
+    font-weight: 600; letter-spacing: -0.02em; line-height: 1; margin: 12px 0 8px;
+  }
+  .compare .col.bad .big { color: var(--red); }
+  .compare .col.good .big { color: var(--green); }
+  .compare .col p { margin: 6px 0 0; color: var(--text-muted); font-size: 15px; }
+  .compare .vs {
+    display: flex; align-items: center; justify-content: center;
+    color: var(--text-dim); font-family: var(--mono);
+    font-size: 14px;
+  }
+
+  /* ---------- How it works ---------- */
+  .flow {
+    background: var(--bg-panel);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 36px;
+    font-family: var(--mono);
+    overflow-x: auto;
+  }
+  .flow pre {
+    margin: 0; color: var(--text); font-size: 13px;
+    line-height: 1.65; white-space: pre;
+  }
+  .flow .c-green { color: var(--green); }
+  .flow .c-red { color: var(--red); }
+  .flow .c-blue { color: var(--blue); }
+  .flow .c-muted { color: var(--text-muted); }
+
+  .steps {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+    margin-top: 36px;
+  }
+  @media (max-width: 820px) { .steps { grid-template-columns: 1fr; } }
+  .step {
+    background: var(--bg-panel);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 24px;
+  }
+  .step .num {
+    font-family: var(--mono); font-size: 12px; color: var(--green);
+    letter-spacing: 0.08em;
+  }
+  .step h4 {
+    margin: 8px 0 8px; font-size: 18px; font-weight: 600; letter-spacing: -0.01em;
+  }
+  .step p { margin: 0; color: var(--text-muted); font-size: 15px; }
+
+  /* ---------- Why now / market ---------- */
+  .why-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;
+  }
+  @media (max-width: 760px) { .why-grid { grid-template-columns: 1fr; } }
+  .why-card {
+    background: var(--bg-panel);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 28px;
+  }
+  .why-card h4 {
+    margin: 0 0 10px; font-size: 17px; font-weight: 600;
+    color: var(--text);
+  }
+  .why-card h4 .icon {
+    display: inline-block; width: 24px; height: 24px;
+    background: rgba(63,220,126,0.1); color: var(--green);
+    border-radius: 6px; text-align: center;
+    line-height: 24px; font-size: 13px; margin-right: 8px;
+    font-family: var(--mono);
+  }
+  .why-card p { margin: 0; color: var(--text-muted); font-size: 15px; }
+
+  /* ---------- FAQ ---------- */
+  .faq { display: flex; flex-direction: column; gap: 12px; max-width: 820px; }
+  details.qa {
+    background: var(--bg-panel);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px 24px;
+    transition: border-color 0.2s;
+  }
+  details.qa[open] { border-color: var(--border-strong); }
+  details.qa summary {
+    cursor: pointer; list-style: none;
+    font-weight: 600; font-size: 16px;
+    display: flex; justify-content: space-between; align-items: center;
+    color: var(--text);
+  }
+  details.qa summary::-webkit-details-marker { display: none; }
+  details.qa summary::after {
+    content: "+"; font-family: var(--mono); color: var(--green);
+    font-size: 22px; transition: transform 0.2s;
+  }
+  details.qa[open] summary::after { content: "−"; }
+  details.qa p {
+    margin: 14px 0 0; color: var(--text-muted); font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ---------- CTA ---------- */
+  section.cta-band {
+    padding: 80px 0;
+    background:
+      radial-gradient(800px 400px at 50% 0%, rgba(63,220,126,0.08), transparent 70%),
+      var(--bg);
+    border-bottom: 1px solid var(--border);
+    text-align: center;
+  }
+  .cta-band h2 { margin-bottom: 14px; }
+  .cta-band p { color: var(--text-muted); font-size: 17px; margin: 0 0 32px; }
+  .cta-band .btns { display: inline-flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
+
+  /* ---------- Footer ---------- */
+  footer {
+    padding: 48px 0 64px;
+    color: var(--text-dim);
+    font-size: 14px;
+  }
+  footer .wrap {
+    display: flex; justify-content: space-between; align-items: center; gap: 24px;
+    flex-wrap: wrap;
+  }
+  footer .brand { font-size: 14px; }
+  footer a { color: var(--text-muted); margin-left: 20px; }
+  footer a:hover { color: var(--green); text-decoration: none; }
+  footer .left { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+  footer .copy { color: var(--text-dim); }
+</style>
+</head>
+<body>
+
+<nav class="top">
+  <div class="wrap">
+    <a class="brand" href="#top">
+      <span class="brand-dot" aria-hidden="true"></span>
+      kysira
+    </a>
+    <div class="links">
+      <a href="#how">How it works</a>
+      <a href="#why">Why now</a>
+      <a href="#faq">FAQ</a>
+      <a class="cta" href="https://demo.kysira.com" target="_blank" rel="noopener">Live demo →</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero" id="top">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <span class="eyebrow">AI-native application security</span>
+        <h1 class="headline">
+          SQL injection, <em>killed in under 100ms</em>.
+        </h1>
+        <p class="lede">
+          Kysira is a reverse proxy that scores every HTTP request with a fine-tuned language model and
+          <strong>severs malicious connections at machine speed</strong> — before they ever reach your database.
+          The industry average time-to-detect a breach is 277 days. Ours is forty milliseconds.
+        </p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="https://demo.kysira.com" target="_blank" rel="noopener">
+            See it kill an attack live →
+          </a>
+          <a class="btn btn-ghost" href="#how">How it works</a>
+        </div>
+      </div>
+
+      <div class="terminal" aria-hidden="true">
+        <div class="term-bar">
+          <div class="term-dots"><span></span><span></span><span></span></div>
+          <div class="term-title">kysira-proxy · live kill feed</div>
+        </div>
+        <div class="term-body">
+          <div class="term-feed" id="feed"></div>
+          <div class="term-prompt">tail -f kysira.log<span class="cur"></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="stats">
+  <div class="wrap">
+    <div class="stat-grid">
+      <div class="stat">
+        <div class="num">99.87<small>%</small></div>
+        <div class="label">Detection accuracy</div>
+      </div>
+      <div class="stat">
+        <div class="num">~40<small>ms</small></div>
+        <div class="label">P50 inference latency</div>
+      </div>
+      <div class="stat">
+        <div class="num">&lt;100<small>ms</small></div>
+        <div class="label">End-to-end time-to-kill</div>
+      </div>
+      <div class="stat">
+        <div class="num">0<small>ms</small></div>
+        <div class="label">Cold start (model in image)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="problem">
+  <div class="wrap">
+    <div class="section-eyebrow">// the problem</div>
+    <h2>SQL injection is a 26-year-old attack that still works.</h2>
+    <p class="lead">
+      It's the #3 entry on the OWASP Top 10. It hit MOVEit, Equifax, TalkTalk, Heartland.
+      Detection today still relies on humans in a security operations center reading dashboards.
+      By the time someone notices, your customer data is already on a forum.
+    </p>
+
+    <div class="compare">
+      <div class="col bad">
+        <h3>Status quo</h3>
+        <div class="big">~45 min</div>
+        <p>Mean time to acknowledge a SOC alert. Response — the actual response — takes hours or days.</p>
+      </div>
+      <div class="vs">vs.</div>
+      <div class="col good">
+        <h3>Kysira</h3>
+        <div class="big">&lt;100 ms</div>
+        <p>Detect, decide, and reset the TCP connection. The attacker sees their terminal die mid-payload.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="how">
+  <div class="wrap">
+    <div class="section-eyebrow">// how it works</div>
+    <h2>An AI sidecar that lives on the request hot path.</h2>
+    <p class="lead">
+      A Go reverse proxy intercepts every request and asks a fine-tuned DistilBERT classifier
+      "is this an attack?" — in less time than a typical TLS handshake. If yes, the connection is
+      forcibly reset before any code runs against your database.
+    </p>
+
+    <div class="flow">
+<pre>
+    <span class="c-muted">Internet</span>
+        │
+        ▼
+   ┌──────────────────────┐         ┌────────────────────────────┐
+   │  <span class="c-green">Go reverse proxy</span>    │  ◀────▶ │  <span class="c-blue">DistilBERT inference</span>     │
+   │  <span class="c-muted">- captures request</span>  │   HTTP  │  <span class="c-muted">- 65.8M params, Apache-2.0</span> │
+   │  <span class="c-muted">- enforces decision</span> │  ~1ms   │  <span class="c-muted">- ~40ms P50 on CPU</span>         │
+   └──────────────────────┘         └────────────────────────────┘
+        │
+        ├──── score ≥ 0.95 ────▶  <span class="c-red">TCP RST · 403 · log kill</span>
+        │
+        └──── score &lt; 0.95 ────▶  <span class="c-green">forward to upstream</span>
+                                         │
+                                         ▼
+                                  <span class="c-muted">Your application</span>
+</pre>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="num">01 / INTERCEPT</div>
+        <h4>Drop in as a proxy</h4>
+        <p>One container in front of your app. No SDK, no code changes, no agent on your database. Works with anything that speaks HTTP.</p>
+      </div>
+      <div class="step">
+        <div class="num">02 / SCORE</div>
+        <h4>Classify in 40 ms</h4>
+        <p>A purpose-built language model — not a regex set — reads the full request and returns a confidence score plus a human-readable reason.</p>
+      </div>
+      <div class="step">
+        <div class="num">03 / KILL</div>
+        <h4>Reset the connection</h4>
+        <p>Above threshold, the TCP connection is severed. The attacker's tooling reports "connection reset by peer." Your database never saw the query.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="why">
+  <div class="wrap">
+    <div class="section-eyebrow">// why now</div>
+    <h2>The economics of AppSec are inverting.</h2>
+    <p class="lead">
+      Pre-trained transformers have collapsed the cost of accurate request classification by two orders of magnitude.
+      What previously required a team of detection engineers writing rules now runs as a 60MB sidecar on a $5/mo VM.
+    </p>
+
+    <div class="why-grid">
+      <div class="why-card">
+        <h4><span class="icon">$</span>Web app firewalls are rule-based and brittle</h4>
+        <p>Incumbents charge enterprise prices for regex engines that miss novel attacks and fire false positives on legitimate traffic. We replace the regex with a model.</p>
+      </div>
+      <div class="why-card">
+        <h4><span class="icon">↗</span>Attack volume is up, not down</h4>
+        <p>Automated scanners and AI-assisted exploitation are flooding the long tail of the internet. Manual SOC response can't scale to match that throughput.</p>
+      </div>
+      <div class="why-card">
+        <h4><span class="icon">⏱</span>Speed is the moat</h4>
+        <p>Detection isn't enough — by then it's a breach. Sub-100ms automated <em>response</em> is what changes the outcome, and it requires a model on the hot path.</p>
+      </div>
+      <div class="why-card">
+        <h4><span class="icon">⊞</span>SQLi is the wedge, not the product</h4>
+        <p>The same architecture trivially extends to XSS, command injection, SSRF, prompt injection, and credential stuffing. One platform, many threat classes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="faq">
+  <div class="wrap">
+    <div class="section-eyebrow">// frequently asked</div>
+    <h2>Questions investors and CISOs ask first.</h2>
+
+    <div class="faq">
+      <details class="qa">
+        <summary>What's the false positive story?</summary>
+        <p>Kysira ships in <strong>shadow mode</strong> by default — every decision is logged and headers are added, but requests still pass through. Operators run it for a week, review the would-have-killed events, then flip a single toggle to active. False positives become observable before they become incidents.</p>
+      </details>
+      <details class="qa">
+        <summary>Why is this different from a WAF like Cloudflare or AWS WAF?</summary>
+        <p>WAFs are rule engines. They match patterns. Kysira is a language model — it understands the structure of an injection attempt regardless of obfuscation, encoding, or novel phrasing. It also gives you a reason for every decision, which a regex can't.</p>
+      </details>
+      <details class="qa">
+        <summary>How does the latency stay under 100ms with a transformer?</summary>
+        <p>The model is DistilBERT-class — 65.8M parameters, quantized, baked into the container image so there's no cold start. It runs on CPU, no GPU required. The proxy and inference sidecar communicate over loopback HTTP, adding under a millisecond. Total budget end-to-end: well under 100ms on commodity hardware.</p>
+      </details>
+      <details class="qa">
+        <summary>What about encrypted traffic?</summary>
+        <p>Kysira terminates TLS at the proxy (or runs behind your existing TLS terminator like Caddy or Cloudflare). It only inspects what your application would have seen anyway — there's no novel decryption story.</p>
+      </details>
+      <details class="qa">
+        <summary>How do you make money?</summary>
+        <p>Self-hosted open source today; managed cloud and enterprise tier (multi-tenant dashboards, custom-trained models, compliance reporting) on the roadmap. The wedge is SQLi; the platform is general-purpose request scoring.</p>
+      </details>
+      <details class="qa">
+        <summary>How do I see it work right now?</summary>
+        <p>Hit the <a href="https://demo.kysira.com" target="_blank" rel="noopener">live demo</a>. It's an OWASP Juice Shop sitting behind a real Kysira proxy. Try a SQLi payload — watch the dashboard log the kill in real time.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="wrap">
+    <h2>See an attack die in 40 milliseconds.</h2>
+    <p>The fastest way to understand Kysira is to watch it work.</p>
+    <div class="btns">
+      <a class="btn btn-primary" href="https://demo.kysira.com" target="_blank" rel="noopener">Open the live demo →</a>
+      <a class="btn btn-ghost" href="mailto:hello@kysira.com">Talk to the team</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="left">
+      <a class="brand" href="#top">
+        <span class="brand-dot"></span> kysira
+      </a>
+      <span class="copy">© 2026 Kysira. SQL injection is over.</span>
+    </div>
+    <div>
+      <a href="https://demo.kysira.com" target="_blank" rel="noopener">Demo</a>
+      <a href="https://github.com/kysira" target="_blank" rel="noopener">GitHub</a>
+      <a href="mailto:hello@kysira.com">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  // Live kill feed simulation in the hero terminal.
+  var events = [
+    { method: 'POST', path: "/rest/user/login", payload: "' OR 1=1--", killed: true,  reason: 'tautology', ms: 38 },
+    { method: 'GET',  path: '/api/products',  payload: '?q=shoes',     killed: false, reason: 'benign',    ms: 12 },
+    { method: 'POST', path: '/rest/user/login', payload: 'admin',       killed: false, reason: 'benign',    ms: 9  },
+    { method: 'GET',  path: '/api/search',    payload: '?q=UNION+SELECT+pwd', killed: true, reason: 'union-extract', ms: 41 },
+    { method: 'POST', path: '/rest/feedback', payload: 'great service', killed: false, reason: 'benign',    ms: 11 },
+    { method: 'POST', path: '/api/register',  payload: "name=O'Brian",  killed: false, reason: 'apostrophe-ok', ms: 15 },
+    { method: 'GET',  path: '/api/orders',    payload: "?id=1; DROP TABLE", killed: true, reason: 'stacked-query', ms: 36 },
+    { method: 'GET',  path: '/assets/logo.svg', payload: '',             killed: false, reason: 'benign',    ms: 4  },
+    { method: 'POST', path: '/rest/user/login', payload: '%27%20OR%201%3D1', killed: true, reason: 'encoded-sqli', ms: 44 }
+  ];
+
+  var ips = ['185.220.101.4', '94.142.241.111', '45.155.205.233', '203.0.113.7', '198.51.100.42', '172.245.16.88'];
+  var feed = document.getElementById('feed');
+  if (!feed) return;
+  var maxRows = 7;
+  var i = 0;
+
+  function fmtTime(d) {
+    var h = String(d.getHours()).padStart(2, '0');
+    var m = String(d.getMinutes()).padStart(2, '0');
+    var s = String(d.getSeconds()).padStart(2, '0');
+    return h + ':' + m + ':' + s;
+  }
+
+  function makeRow(ev) {
+    var ip = ips[Math.floor(Math.random() * ips.length)];
+    var div = document.createElement('div');
+    div.className = 'term-line row';
+    var verdict = ev.killed
+      ? '<span class="killed">KILL</span>'
+      : '<span class="passed">PASS</span>';
+    var pathDisplay = (ev.path + ev.payload).slice(0, 42);
+    div.innerHTML =
+      '<span class="ts">' + fmtTime(new Date()) + '</span>' +
+      '<span class="ip">' + ip + '</span>' +
+      '<span class="method">' + ev.method + '</span>' +
+      '<span class="path">' + pathDisplay + '</span>' +
+      verdict +
+      '<span class="ms">' + ev.ms + 'ms · ' + ev.reason + '</span>';
+    return div;
+  }
+
+  function tick() {
+    var ev = events[i % events.length];
+    i++;
+    var row = makeRow(ev);
+    feed.appendChild(row);
+    requestAnimationFrame(function () { row.classList.add('show'); });
+    while (feed.children.length > maxRows) {
+      feed.removeChild(feed.firstChild);
+    }
+  }
+
+  // Pre-populate a few rows so it doesn't look empty on load
+  for (var k = 0; k < 4; k++) tick();
+  setInterval(tick, 1800);
+})();
+</script>
+
+</body>
+</html>
