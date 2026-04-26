@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Kysira — Web attacks, killed in under 100ms</title>
-<meta name="description" content="Kysira is an AI reverse proxy that scores every HTTP request and kills web application attacks — injection, XSS, credential stuffing, and more — in under 100ms, before they reach your stack." />
+<title>Kysira: Web attacks, killed in under 100ms</title>
+<meta name="description" content="Kysira is an AI reverse proxy that scores every HTTP request and kills web application attacks (injection, XSS, credential stuffing, and more) in under 100ms, before they reach your stack." />
 <meta name="theme-color" content="#0a0f0e" />
 
 <!-- Open Graph -->
-<meta property="og:title" content="Kysira — Web attacks, killed in under 100ms" />
+<meta property="og:title" content="Kysira: Web attacks, killed in under 100ms" />
 <meta property="og:description" content="An AI reverse proxy that scores every request and kills application-layer attacks at machine speed." />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://kysira.github.io/" />
@@ -441,7 +441,7 @@
         </h1>
         <p class="lede">
           Kysira is a reverse proxy that reads every HTTP request with a purpose-built language model and
-          <strong>severs malicious connections at machine speed</strong> — before they reach your application.
+          <strong>severs malicious connections at machine speed</strong>, before they reach your application.
           The industry average time to detect a breach is 277 days. Ours is forty milliseconds.
         </p>
         <div class="hero-cta">
@@ -494,7 +494,7 @@
     <div class="section-eyebrow">// the problem</div>
     <h2>The OWASP Top 10 is decades old, and still winning.</h2>
     <p class="lead">
-      Injection, broken access control, cross-site scripting, server-side request forgery — the same handful
+      Injection, broken access control, cross-site scripting, server-side request forgery. The same handful
       of attack classes account for the majority of breaches every year. Detection today still relies on humans
       in a security operations center reading dashboards. By the time someone notices, your customer data is
       already on a forum.
@@ -504,7 +504,7 @@
       <div class="col bad">
         <h3>Status quo</h3>
         <div class="big">~45 min</div>
-        <p>Mean time to acknowledge a SOC alert. Response — the actual response — takes hours or days.</p>
+        <p>Mean time to acknowledge a SOC alert. Actual response takes hours or days.</p>
       </div>
       <div class="vs">vs.</div>
       <div class="col good">
@@ -522,7 +522,7 @@
     <h2>An AI sidecar that lives on the request hot path.</h2>
     <p class="lead">
       A high-performance reverse proxy intercepts every request and asks a purpose-built classifier
-      "is this an attack?" — in less time than a typical TLS handshake. If yes, the connection is
+      "is this an attack?" in less time than a typical TLS handshake. If yes, the connection is
       forcibly reset before any code runs in your application.
     </p>
 
@@ -555,7 +555,7 @@
       <div class="step">
         <div class="num">02 / SCORE</div>
         <h4>Classify in 40 ms</h4>
-        <p>A purpose-built language model — not a regex set — reads the full request and returns a confidence score plus a human-readable reason.</p>
+        <p>A purpose-built language model (not a regex set) reads the full request and returns a confidence score plus a human-readable reason.</p>
       </div>
       <div class="step">
         <div class="num">03 / KILL</div>
@@ -586,11 +586,11 @@
       </div>
       <div class="why-card">
         <h4><span class="icon">⏱</span>Speed is the moat</h4>
-        <p>Detection isn't enough — by then it's a breach. Sub-100ms automated <em>response</em> is what changes the outcome, and it requires a model on the hot path.</p>
+        <p>Detection isn't enough; by then it's a breach. Sub-100ms automated <em>response</em> is what changes the outcome, and it requires a model on the hot path.</p>
       </div>
       <div class="why-card">
         <h4><span class="icon">⊞</span>One architecture, every attack class</h4>
-        <p>Injection, XSS, command exec, SSRF, prompt injection, credential stuffing — they all collapse to the same problem: classify a string. We've shipped the first; the rest are model swaps, not rewrites.</p>
+        <p>Injection, XSS, command exec, SSRF, prompt injection, credential stuffing. They all collapse to the same problem: classify a string. We've shipped the first; the rest are model swaps, not rewrites.</p>
       </div>
     </div>
   </div>
@@ -605,27 +605,27 @@
     <div class="faq">
       <details class="qa">
         <summary>What's the false positive story?</summary>
-        <p>Kysira ships in <strong>shadow mode</strong> by default — every decision is logged and headers are added, but requests still pass through. Operators run it for a week, review the would-have-killed events, then flip a single toggle to active. False positives become observable before they become incidents.</p>
+        <p>Kysira ships in <strong>shadow mode</strong> by default, logging every decision and adding headers while requests still pass through. Operators run it for a week, review the would-have-killed events, then flip a single toggle to active. False positives become observable before they become incidents.</p>
       </details>
       <details class="qa">
         <summary>What attack classes does it cover?</summary>
-        <p>Kysira protects against all common OWASP attack classes — SQL injection, cross-site scripting, command injection, SSRF, prompt injection, credential stuffing, and more — each defended by a tailored model purpose-built for that threat. Our system continuously monitors traffic in real time, so even novel attacks that have never been seen before are caught and stopped fast.</p>
+        <p>Kysira protects against all common OWASP attack classes: SQL injection, cross-site scripting, command injection, SSRF, prompt injection, credential stuffing, and more. Each is defended by a tailored model purpose-built for that threat. Our system continuously monitors traffic in real time, so even novel attacks that have never been seen before are caught and stopped fast.</p>
       </details>
       <details class="qa">
         <summary>Why is this different from a WAF like Cloudflare or AWS WAF?</summary>
-        <p>WAFs are rule engines. They match patterns. Kysira is a language model — it understands the structure of an attack regardless of obfuscation, encoding, or novel phrasing. It also gives you a reason for every decision, which a regex can't.</p>
+        <p>WAFs are rule engines. They match patterns. Kysira is a language model that understands the structure of an attack regardless of obfuscation, encoding, or novel phrasing. It also gives you a reason for every decision, which a regex can't.</p>
       </details>
       <details class="qa">
         <summary>How does the latency stay under 100ms with a language model?</summary>
-        <p>We use compact, purpose-built classifiers — not a general-purpose LLM — quantized and baked into the container image so there's no cold start. They run on CPU; no GPU required. The proxy and inference sidecar communicate over loopback, adding under a millisecond. Total budget end-to-end: well under 100ms on commodity hardware.</p>
+        <p>We use compact, purpose-built classifiers (not a general-purpose LLM), quantized and baked into the container image so there's no cold start. They run on CPU; no GPU required. The proxy and inference sidecar communicate over loopback, adding under a millisecond. Total budget end-to-end: well under 100ms on commodity hardware.</p>
       </details>
       <details class="qa">
         <summary>What about encrypted traffic?</summary>
-        <p>Kysira terminates TLS at the proxy (or runs behind your existing TLS terminator like Caddy or Cloudflare). It only inspects what your application would have seen anyway — there's no novel decryption story.</p>
+        <p>Kysira terminates TLS at the proxy (or runs behind your existing TLS terminator like Caddy or Cloudflare). It only inspects what your application would have seen anyway. No novel decryption required.</p>
       </details>
       <details class="qa">
         <summary>How do I see it work right now?</summary>
-        <p>Hit the <a href="https://demo.kysira.com" target="_blank" rel="noopener">live demo</a>. It's a deliberately vulnerable web app sitting behind a real Kysira proxy. Try an attack payload — watch the dashboard log the kill in real time.</p>
+        <p>Hit the <a href="https://demo.kysira.com" target="_blank" rel="noopener">live demo</a>. It's a deliberately vulnerable web app sitting behind a real Kysira proxy. Try an attack payload and watch the dashboard log the kill in real time.</p>
       </details>
     </div>
   </div>
