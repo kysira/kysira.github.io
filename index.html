@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Kysira — SQL injection, killed in under 100ms</title>
-<meta name="description" content="Kysira is an AI reverse proxy that scores every request with a fine-tuned DistilBERT classifier and kills SQL injection attacks in under 100ms — before they reach your database." />
+<title>Kysira — Web attacks, killed in under 100ms</title>
+<meta name="description" content="Kysira is an AI reverse proxy that scores every HTTP request and kills web application attacks — injection, XSS, credential stuffing, and more — in under 100ms, before they reach your stack." />
 <meta name="theme-color" content="#0a0f0e" />
 
 <!-- Open Graph -->
-<meta property="og:title" content="Kysira — SQL injection, killed in under 100ms" />
-<meta property="og:description" content="An AI reverse proxy that scores every request and kills SQL injection at machine speed." />
+<meta property="og:title" content="Kysira — Web attacks, killed in under 100ms" />
+<meta property="og:description" content="An AI reverse proxy that scores every request and kills application-layer attacks at machine speed." />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://kysira.github.io/" />
 
@@ -437,12 +437,12 @@
       <div>
         <span class="eyebrow">AI-native application security</span>
         <h1 class="headline">
-          SQL injection, <em>killed in under 100ms</em>.
+          Web attacks, <em>killed in under 100ms</em>.
         </h1>
         <p class="lede">
-          Kysira is a reverse proxy that scores every HTTP request with a fine-tuned language model and
-          <strong>severs malicious connections at machine speed</strong> — before they ever reach your database.
-          The industry average time-to-detect a breach is 277 days. Ours is forty milliseconds.
+          Kysira is a reverse proxy that reads every HTTP request with a purpose-built language model and
+          <strong>severs malicious connections at machine speed</strong> — before they reach your application.
+          The industry average time to detect a breach is 277 days. Ours is forty milliseconds.
         </p>
         <div class="hero-cta">
           <a class="btn btn-primary" href="https://demo.kysira.com" target="_blank" rel="noopener">
@@ -492,11 +492,12 @@
 <section class="block" id="problem">
   <div class="wrap">
     <div class="section-eyebrow">// the problem</div>
-    <h2>SQL injection is a 26-year-old attack that still works.</h2>
+    <h2>The OWASP Top 10 is decades old, and still winning.</h2>
     <p class="lead">
-      It's the #3 entry on the OWASP Top 10. It hit MOVEit, Equifax, TalkTalk, Heartland.
-      Detection today still relies on humans in a security operations center reading dashboards.
-      By the time someone notices, your customer data is already on a forum.
+      Injection, broken access control, cross-site scripting, server-side request forgery — the same handful
+      of attack classes account for the majority of breaches every year. Detection today still relies on humans
+      in a security operations center reading dashboards. By the time someone notices, your customer data is
+      already on a forum.
     </p>
 
     <div class="compare">
@@ -520,9 +521,9 @@
     <div class="section-eyebrow">// how it works</div>
     <h2>An AI sidecar that lives on the request hot path.</h2>
     <p class="lead">
-      A Go reverse proxy intercepts every request and asks a fine-tuned DistilBERT classifier
+      A high-performance reverse proxy intercepts every request and asks a purpose-built classifier
       "is this an attack?" — in less time than a typical TLS handshake. If yes, the connection is
-      forcibly reset before any code runs against your database.
+      forcibly reset before any code runs in your application.
     </p>
 
     <div class="flow">
@@ -531,17 +532,17 @@
         │
         ▼
    ┌──────────────────────┐         ┌────────────────────────────┐
-   │  <span class="c-green">Go reverse proxy</span>    │  ◀────▶ │  <span class="c-blue">DistilBERT inference</span>     │
-   │  <span class="c-muted">- captures request</span>  │   HTTP  │  <span class="c-muted">- 65.8M params, Apache-2.0</span> │
+   │  <span class="c-green">Reverse proxy</span>       │  ◀────▶ │  <span class="c-blue">Inference engine</span>           │
+   │  <span class="c-muted">- captures request</span>  │   HTTP  │  <span class="c-muted">- purpose-built classifier</span>  │
    │  <span class="c-muted">- enforces decision</span> │  ~1ms   │  <span class="c-muted">- ~40ms P50 on CPU</span>         │
    └──────────────────────┘         └────────────────────────────┘
         │
-        ├──── score ≥ 0.95 ────▶  <span class="c-red">TCP RST · 403 · log kill</span>
+        ├──── score ≥ threshold ────▶  <span class="c-red">TCP RST · 403 · log kill</span>
         │
-        └──── score &lt; 0.95 ────▶  <span class="c-green">forward to upstream</span>
-                                         │
-                                         ▼
-                                  <span class="c-muted">Your application</span>
+        └──── score &lt; threshold ────▶  <span class="c-green">forward to upstream</span>
+                                              │
+                                              ▼
+                                       <span class="c-muted">Your application</span>
 </pre>
     </div>
 
@@ -559,7 +560,7 @@
       <div class="step">
         <div class="num">03 / KILL</div>
         <h4>Reset the connection</h4>
-        <p>Above threshold, the TCP connection is severed. The attacker's tooling reports "connection reset by peer." Your database never saw the query.</p>
+        <p>Above threshold, the TCP connection is severed. The attacker's tooling reports "connection reset by peer." Your application never saw the request.</p>
       </div>
     </div>
   </div>
@@ -588,8 +589,8 @@
         <p>Detection isn't enough — by then it's a breach. Sub-100ms automated <em>response</em> is what changes the outcome, and it requires a model on the hot path.</p>
       </div>
       <div class="why-card">
-        <h4><span class="icon">⊞</span>SQLi is the wedge, not the product</h4>
-        <p>The same architecture trivially extends to XSS, command injection, SSRF, prompt injection, and credential stuffing. One platform, many threat classes.</p>
+        <h4><span class="icon">⊞</span>One architecture, every attack class</h4>
+        <p>Injection, XSS, command exec, SSRF, prompt injection, credential stuffing — they all collapse to the same problem: classify a string. We've shipped the first; the rest are model swaps, not rewrites.</p>
       </div>
     </div>
   </div>
@@ -600,18 +601,23 @@
     <div class="section-eyebrow">// frequently asked</div>
     <h2>Questions investors and CISOs ask first.</h2>
 
+
     <div class="faq">
       <details class="qa">
         <summary>What's the false positive story?</summary>
         <p>Kysira ships in <strong>shadow mode</strong> by default — every decision is logged and headers are added, but requests still pass through. Operators run it for a week, review the would-have-killed events, then flip a single toggle to active. False positives become observable before they become incidents.</p>
       </details>
       <details class="qa">
-        <summary>Why is this different from a WAF like Cloudflare or AWS WAF?</summary>
-        <p>WAFs are rule engines. They match patterns. Kysira is a language model — it understands the structure of an injection attempt regardless of obfuscation, encoding, or novel phrasing. It also gives you a reason for every decision, which a regex can't.</p>
+        <summary>What attack classes does it cover?</summary>
+        <p>Production today: SQL injection — chosen as the wedge because it's the most common, most measurable, and most commercially urgent class on the OWASP Top 10. The same architecture extends to cross-site scripting, command injection, SSRF, prompt injection, and credential stuffing — those are model swaps, not rewrites. Roadmap detail is shared under NDA.</p>
       </details>
       <details class="qa">
-        <summary>How does the latency stay under 100ms with a transformer?</summary>
-        <p>The model is DistilBERT-class — 65.8M parameters, quantized, baked into the container image so there's no cold start. It runs on CPU, no GPU required. The proxy and inference sidecar communicate over loopback HTTP, adding under a millisecond. Total budget end-to-end: well under 100ms on commodity hardware.</p>
+        <summary>Why is this different from a WAF like Cloudflare or AWS WAF?</summary>
+        <p>WAFs are rule engines. They match patterns. Kysira is a language model — it understands the structure of an attack regardless of obfuscation, encoding, or novel phrasing. It also gives you a reason for every decision, which a regex can't.</p>
+      </details>
+      <details class="qa">
+        <summary>How does the latency stay under 100ms with a language model?</summary>
+        <p>We use compact, purpose-built classifiers — not a general-purpose LLM — quantized and baked into the container image so there's no cold start. They run on CPU; no GPU required. The proxy and inference sidecar communicate over loopback, adding under a millisecond. Total budget end-to-end: well under 100ms on commodity hardware.</p>
       </details>
       <details class="qa">
         <summary>What about encrypted traffic?</summary>
@@ -619,11 +625,11 @@
       </details>
       <details class="qa">
         <summary>How do you make money?</summary>
-        <p>Self-hosted open source today; managed cloud and enterprise tier (multi-tenant dashboards, custom-trained models, compliance reporting) on the roadmap. The wedge is SQLi; the platform is general-purpose request scoring.</p>
+        <p>Self-hosted open source today; managed cloud and enterprise tier (multi-tenant dashboards, custom-trained models, compliance reporting) on the roadmap. The wedge is injection; the platform is general-purpose request scoring.</p>
       </details>
       <details class="qa">
         <summary>How do I see it work right now?</summary>
-        <p>Hit the <a href="https://demo.kysira.com" target="_blank" rel="noopener">live demo</a>. It's an OWASP Juice Shop sitting behind a real Kysira proxy. Try a SQLi payload — watch the dashboard log the kill in real time.</p>
+        <p>Hit the <a href="https://demo.kysira.com" target="_blank" rel="noopener">live demo</a>. It's a deliberately vulnerable web app sitting behind a real Kysira proxy. Try an attack payload — watch the dashboard log the kill in real time.</p>
       </details>
     </div>
   </div>
@@ -646,7 +652,7 @@
       <a class="brand" href="#top">
         <span class="brand-dot"></span> kysira
       </a>
-      <span class="copy">© 2026 Kysira. SQL injection is over.</span>
+      <span class="copy">© 2026 Kysira. Web attacks die at the door.</span>
     </div>
     <div>
       <a href="https://demo.kysira.com" target="_blank" rel="noopener">Demo</a>
@@ -660,15 +666,19 @@
 (function () {
   // Live kill feed simulation in the hero terminal.
   var events = [
-    { method: 'POST', path: "/rest/user/login", payload: "' OR 1=1--", killed: true,  reason: 'tautology', ms: 38 },
-    { method: 'GET',  path: '/api/products',  payload: '?q=shoes',     killed: false, reason: 'benign',    ms: 12 },
-    { method: 'POST', path: '/rest/user/login', payload: 'admin',       killed: false, reason: 'benign',    ms: 9  },
-    { method: 'GET',  path: '/api/search',    payload: '?q=UNION+SELECT+pwd', killed: true, reason: 'union-extract', ms: 41 },
-    { method: 'POST', path: '/rest/feedback', payload: 'great service', killed: false, reason: 'benign',    ms: 11 },
-    { method: 'POST', path: '/api/register',  payload: "name=O'Brian",  killed: false, reason: 'apostrophe-ok', ms: 15 },
-    { method: 'GET',  path: '/api/orders',    payload: "?id=1; DROP TABLE", killed: true, reason: 'stacked-query', ms: 36 },
-    { method: 'GET',  path: '/assets/logo.svg', payload: '',             killed: false, reason: 'benign',    ms: 4  },
-    { method: 'POST', path: '/rest/user/login', payload: '%27%20OR%201%3D1', killed: true, reason: 'encoded-sqli', ms: 44 }
+    { method: 'POST', path: "/rest/user/login", payload: "' OR 1=1--",            killed: true,  reason: 'sqli',         ms: 38 },
+    { method: 'GET',  path: '/api/products',    payload: '?q=shoes',              killed: false, reason: 'benign',       ms: 12 },
+    { method: 'POST', path: '/comments',        payload: '<scr'+'ipt>steal()<\/scr'+'ipt>', killed: true, reason: 'xss', ms: 33 },
+    { method: 'POST', path: '/rest/user/login', payload: 'admin',                 killed: false, reason: 'benign',       ms: 9  },
+    { method: 'GET',  path: '/api/search',      payload: '?q=UNION+SELECT+pwd',   killed: true,  reason: 'sqli',         ms: 41 },
+    { method: 'POST', path: '/rest/feedback',   payload: 'great service',         killed: false, reason: 'benign',       ms: 11 },
+    { method: 'GET',  path: '/api/fetch',       payload: '?url=169.254.169.254',  killed: true,  reason: 'ssrf',         ms: 29 },
+    { method: 'POST', path: '/api/register',    payload: "name=O'Brian",          killed: false, reason: 'benign',       ms: 15 },
+    { method: 'GET',  path: '/api/orders',      payload: '?id=1;DROP TABLE',      killed: true,  reason: 'sqli',         ms: 36 },
+    { method: 'POST', path: '/api/ping',        payload: 'host=8.8.8.8;rm -rf',   killed: true,  reason: 'cmd-injection',ms: 31 },
+    { method: 'GET',  path: '/assets/logo.svg', payload: '',                      killed: false, reason: 'benign',       ms: 4  },
+    { method: 'POST', path: '/rest/user/login', payload: '%27%20OR%201%3D1',      killed: true,  reason: 'sqli',         ms: 44 },
+    { method: 'POST', path: '/api/login',       payload: 'user=root,pass=...',    killed: true,  reason: 'cred-stuff',   ms: 27 }
   ];
 
   var ips = ['185.220.101.4', '94.142.241.111', '45.155.205.233', '203.0.113.7', '198.51.100.42', '172.245.16.88'];
