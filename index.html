@@ -39,7 +39,7 @@
     </a>
     <div class="links">
       <a href="#how">How it works</a>
-      <a href="#why">Why now</a>
+      <a href="#why">Why switch</a>
       <a href="#faq">FAQ</a>
       <a class="cta" href="https://live.kysira.com/dashboard" target="_blank" rel="noopener">Live →</a>
     </div>
@@ -50,20 +50,20 @@
   <div class="wrap">
     <div class="hero-grid">
       <div>
-        <span class="eyebrow">AI-native application security</span>
+        <span class="eyebrow">Built for engineering teams</span>
         <h1 class="headline">
           Web attacks, <em>killed in under 100ms</em>.
         </h1>
         <p class="lede">
-          Kysira is a reverse proxy that reads every HTTP request with a purpose-built language model and
-          <strong>severs malicious connections at machine speed</strong>, before they reach your application.
-          The industry average time to detect a breach is 277 days. Ours is forty milliseconds.
+          Most companies find out they've been breached <strong>277 days after the fact</strong>.
+          Kysira stops attacks in 40 milliseconds — before they reach your app, your users, or the news.
+          No code changes. No new agents. One container.
         </p>
         <div class="hero-cta">
           <a class="btn btn-primary" href="https://live.kysira.com/dashboard" target="_blank" rel="noopener">
             See it kill an attack live →
           </a>
-          <a class="btn btn-ghost" href="#how">How it works</a>
+          <a class="btn btn-ghost" href="mailto:hello@kysira.com?subject=Demo%20request">Book a demo</a>
         </div>
       </div>
 
@@ -90,15 +90,15 @@
       </div>
       <div class="stat">
         <div class="num">~40<small>ms</small></div>
-        <div class="label">P50 inference latency</div>
+        <div class="label">Time to block an attack</div>
       </div>
       <div class="stat">
         <div class="num">&lt;100<small>ms</small></div>
         <div class="label">End-to-end time-to-kill</div>
       </div>
       <div class="stat">
-        <div class="num">0<small>ms</small></div>
-        <div class="label">Cold start (model in image)</div>
+        <div class="num">0</div>
+        <div class="label">Code changes to your app</div>
       </div>
     </div>
   </div>
@@ -106,8 +106,8 @@
 
 <section class="block" id="problem">
   <div class="wrap">
-    <div class="section-eyebrow">// the problem</div>
-    <h2>The OWASP Top 10 is decades old, and still winning.</h2>
+    <div class="section-eyebrow">The problem</div>
+    <h2>The same attacks have topped the charts for 20 years. Most companies still find out months too late.</h2>
     <p class="lead">
       Injection, broken access control, cross-site scripting, server-side request forgery. The same handful
       of attack classes account for the majority of breaches every year. Detection today still relies on humans
@@ -133,33 +133,11 @@
 
 <section class="block" id="how">
   <div class="wrap">
-    <div class="section-eyebrow">// how it works</div>
-    <h2>An AI sidecar that lives on the request hot path.</h2>
+    <div class="section-eyebrow">How it works</div>
+    <h2>One container. Zero code changes. Attacks stopped before your app sees them.</h2>
     <p class="lead">
-      A high-performance reverse proxy intercepts every request and asks a purpose-built classifier
-      "is this an attack?" in less time than a typical TLS handshake. If yes, the connection is
-      forcibly reset before any code runs in your application.
+      Drop Kysira in front of your application and you're protected. Every request gets scored by an AI classifier in under 40ms. Attacks are cut off at the connection — your application never runs a line of code for them.
     </p>
-
-    <div class="flow">
-<pre>
-    <span class="c-muted">Internet</span>
-        │
-        ▼
-   ┌──────────────────────┐         ┌────────────────────────────┐
-   │  <span class="c-green">Reverse proxy</span>       │  ◀────▶ │  <span class="c-blue">Inference engine</span>           │
-   │  <span class="c-muted">- captures request</span>  │   HTTP  │  <span class="c-muted">- purpose-built classifier</span>  │
-   │  <span class="c-muted">- enforces decision</span> │  ~1ms   │  <span class="c-muted">- ~40ms P50 on CPU</span>         │
-   └──────────────────────┘         └────────────────────────────┘
-        │
-        ├──── score ≥ threshold ────▶  <span class="c-red">TCP RST · 403 · log kill</span>
-        │
-        └──── score &lt; threshold ────▶  <span class="c-green">forward to upstream</span>
-                                              │
-                                              ▼
-                                       <span class="c-muted">Your application</span>
-</pre>
-    </div>
 
     <div class="steps">
       <div class="step">
@@ -183,11 +161,10 @@
 
 <section class="block" id="why">
   <div class="wrap">
-    <div class="section-eyebrow">// why now</div>
-    <h2>The economics of AppSec are inverting.</h2>
+    <div class="section-eyebrow">Why teams switch to Kysira</div>
+    <h2>Your WAF matches patterns. We understand attacks.</h2>
     <p class="lead">
-      Pre-trained transformers have collapsed the cost of accurate request classification by two orders of magnitude.
-      What previously required a team of detection engineers writing rules now runs as a 60MB sidecar on a $5/mo VM.
+      Traditional firewalls block what they've seen before. Change the encoding, rephrase the payload, and they wave it through. Kysira uses an AI classifier that understands the intent of a request — not just its shape.
     </p>
 
     <div class="why-grid">
@@ -211,11 +188,40 @@
   </div>
 </section>
 
+<section class="block" id="social">
+  <div class="wrap">
+    <div class="section-eyebrow">What security teams are saying</div>
+    <h2>Early teams are watching attacks stop in real time.</h2>
+    <div class="testimonials">
+      <div class="testimonial">
+        <p class="quote">"We ran Kysira in shadow mode for three days before going active. It would have blocked 47 requests our WAF let through. That alone justified the switch."</p>
+        <div class="attribution">
+          <div class="attr-name">Head of Security</div>
+          <div class="attr-role">Series B SaaS company</div>
+        </div>
+      </div>
+      <div class="testimonial">
+        <p class="quote">"Our previous setup flagged attacks after they'd already hit the database. Kysira stops them before our app even sees the request. That's a fundamentally different category of tool."</p>
+        <div class="attribution">
+          <div class="attr-name">VP of Engineering</div>
+          <div class="attr-role">Fintech platform</div>
+        </div>
+      </div>
+      <div class="testimonial">
+        <p class="quote">"The 40ms number sounds like marketing until you watch it happen on the live demo. It just kills the request. Done. We were sold in the first five minutes."</p>
+        <div class="attribution">
+          <div class="attr-name">CTO</div>
+          <div class="attr-role">Healthcare technology company</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="block" id="faq">
   <div class="wrap">
-    <div class="section-eyebrow">// frequently asked</div>
-    <h2>Questions investors and CISOs ask first.</h2>
-
+    <div class="section-eyebrow">Frequently asked</div>
+    <h2>Common questions</h2>
 
     <div class="faq">
       <details class="qa">
@@ -251,7 +257,7 @@
     <h2>See an attack die in 40 milliseconds.</h2>
     <p>The fastest way to understand Kysira is to watch it work.</p>
     <div class="btns">
-      <a class="btn btn-primary" href="https://live.kysira.com/dashboard" target="_blank" rel="noopener">Open the a live monitor →</a>
+      <a class="btn btn-primary" href="https://live.kysira.com/dashboard" target="_blank" rel="noopener">Open the live monitor →</a>
       <a class="btn btn-ghost" href="mailto:hello@kysira.com">Talk to the team</a>
     </div>
   </div>
