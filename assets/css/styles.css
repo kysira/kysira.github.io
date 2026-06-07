@@ -114,6 +114,14 @@ h1.headline s {
   text-decoration-thickness: 4px;
   color: var(--text-dim);
 }
+.etymology {
+  font-size: 13px;
+  color: var(--text-dim);
+  letter-spacing: 0.03em;
+  margin: -8px 0 28px;
+  font-family: var(--mono);
+}
+.etymology em { font-style: italic; color: var(--text-muted); }
 .lede {
   font-size: clamp(17px, 1.6vw, 20px);
   color: var(--text-muted); max-width: 700px; margin: 0 0 36px;
