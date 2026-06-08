@@ -33,11 +33,11 @@ The `.nojekyll` file disables Jekyll processing so files are served as-is.
 
 ## Custom domain
 
-To serve at `kysira.com` (or similar):
+To serve at `kysira.ai` (or similar):
 
 1. Add a `CNAME` file at the repo root containing the bare domain:
    ```
-   kysira.com
+   kysira.ai
    ```
 2. At your DNS provider, add `A` records for the apex pointing to GitHub Pages IPs (185.199.108.153, 185.199.109.153, 185.199.110.153, 185.199.111.153) and a `CNAME` record for `www` pointing to `kysira.github.io`.
 3. In repo Settings → Pages, set the custom domain and tick **Enforce HTTPS**.
