@@ -117,12 +117,14 @@
   .team-avatar {
     width: 64px; height: 64px;
     border-radius: 12px;
-    background: linear-gradient(135deg, var(--blue) 0%, var(--green) 100%);
-    display: flex; align-items: center; justify-content: center;
-    font-family: var(--mono); font-weight: 700; font-size: 20px;
-    color: #060c0f;
+    overflow: hidden;
     flex-shrink: 0;
-    letter-spacing: -0.02em;
+    border: 1px solid var(--border);
+  }
+  .team-avatar img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
   }
   .team-info { display: flex; flex-direction: column; gap: 4px; }
   .team-name {
@@ -263,7 +265,9 @@
     <div class="section-eyebrow">Team</div>
     <h2>The people behind Kysira.</h2>
     <div class="team-card">
-      <div class="team-avatar" aria-hidden="true">FS</div>
+      <div class="team-avatar">
+        <img src="assets/images/fabian-schonholz.jpg" alt="Fabian Schonholz" />
+      </div>
       <div class="team-info">
         <div class="team-name">Fabian Schonholz</div>
         <div class="team-title">Founder &amp; CEO</div>
