@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>About — Kysira</title>
+<meta name="description" content="Kysira is an AI-powered cybersecurity company based in Salt Lake City, UT." />
+<meta name="theme-color" content="#060c0f" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css">
+
+<style>
+  .about-header {
+    padding: 72px 0 56px;
+    border-bottom: 1px solid var(--border);
+  }
+  .about-header h1 {
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    margin: 16px 0 0;
+  }
+  .about-body {
+    padding: 64px 0 96px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 320px;
+    gap: 80px;
+    align-items: start;
+  }
+  @media (max-width: 820px) {
+    .about-body { grid-template-columns: 1fr; gap: 48px; }
+  }
+  .about-body p {
+    color: var(--text-muted);
+    font-size: 17px;
+    line-height: 1.75;
+    margin: 0 0 20px;
+  }
+  .about-body h2 {
+    font-size: clamp(22px, 3vw, 30px);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin: 0 0 20px;
+  }
+  /* Info card */
+  .info-card {
+    background: var(--bg-panel);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px;
+    position: sticky;
+    top: 84px;
+  }
+  .info-card h3 {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-dim);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin: 0 0 20px;
+  }
+  .info-row {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .info-row:last-child { border-bottom: none; padding-bottom: 0; }
+  .info-row:first-of-type { padding-top: 0; }
+  .info-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-dim);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .info-value {
+    font-size: 15px;
+    color: var(--text);
+    font-weight: 500;
+  }
+  .info-value a {
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .info-value a:hover { color: var(--green); text-decoration: none; }
+  /* External link icon */
+  .ext::after {
+    content: "↗";
+    font-size: 12px;
+    color: var(--text-dim);
+  }
+  /* Social links */
+  .social-links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 28px;
+  }
+  .social-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text);
+    font-size: 14px;
+    font-weight: 500;
+    transition: border-color 0.15s, color 0.15s;
+  }
+  .social-link:hover {
+    border-color: var(--green);
+    color: var(--green);
+    text-decoration: none;
+  }
+  .social-icon {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    color: var(--text-muted);
+  }
+  .social-link:hover .social-icon { color: var(--green); }
+</style>
+</head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-09EENK375X"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-09EENK375X');
+</script>
+<body>
+
+<nav class="top">
+  <div class="wrap">
+    <a class="brand" href="/">
+      <img src="assets/images/kysira-logo.png" alt="" class="brand-logo" aria-hidden="true" />
+      kysira
+    </a>
+    <div class="links">
+      <a href="/#how">How it works</a>
+      <a href="/#why">Why switch</a>
+      <a href="/#faq">FAQ</a>
+      <a class="cta" href="https://live.kysira.ai" target="_blank" rel="noopener">Live →</a>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap">
+  <div class="about-header">
+    <div class="section-eyebrow">Company</div>
+    <h1>About Kysira</h1>
+  </div>
+
+  <div class="about-body">
+    <div>
+      <h2>Guardian of the threshold.</h2>
+      <p>Kysira builds AI-powered cybersecurity infrastructure that stops web application attacks before they reach your stack. Our reverse proxy scores every HTTP request in under 40ms and kills threats at the connection level — no code changes, no new agents, one container.</p>
+      <p>We're a team of security engineers and AI researchers who got tired of watching the same attacks top the breach charts year after year while defenders stayed stuck in reactive mode. Kysira is our answer: move the kill decision to the machine, keep it on the hot path, and get the attacker's terminal to die mid-payload.</p>
+      <p>The name comes from the Greek <em>Kyrios</em> (authority over) and <em>Thyra</em> (door/gate) — guardian of the threshold. That's exactly what we build.</p>
+    </div>
+
+    <aside>
+      <div class="info-card">
+        <h3>Company info</h3>
+        <div class="info-row">
+          <span class="info-label">Legal name</span>
+          <span class="info-value">Kysira Corporation</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Location</span>
+          <span class="info-value">Salt Lake City, UT</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Contact</span>
+          <span class="info-value"><a href="mailto:support@kysira.ai">support@kysira.ai</a></span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Website</span>
+          <span class="info-value"><a href="https://kysira.ai" class="ext">kysira.ai</a></span>
+        </div>
+      </div>
+
+      <div class="social-links">
+        <a class="social-link" href="https://www.linkedin.com/company/kysira/" target="_blank" rel="noopener">
+          <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+          </svg>
+          LinkedIn
+        </a>
+        <a class="social-link" href="https://github.com/kysira" target="_blank" rel="noopener">
+          <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+          </svg>
+          GitHub
+        </a>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="left">
+      <a class="brand" href="/">
+        <img src="assets/images/kysira-logo.png" alt="" class="brand-logo" aria-hidden="true" />
+        kysira
+      </a>
+      <span class="copy">© 2026 Kysira. Cyber attacks die at the door.</span>
+    </div>
+    <div>
+      <a href="https://live.kysira.ai" target="_blank" rel="noopener">Live Monitor</a>
+      <a href="https://shop.kysira.ai" target="_blank" rel="noopener">OWASP Site</a>
+      <a href="mailto:hello@kysira.ai">Contact</a>
+      <a href="/terms.html">Terms</a>
+      <a href="https://www.linkedin.com/company/kysira/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
