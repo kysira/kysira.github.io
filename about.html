@@ -96,6 +96,55 @@
     font-size: 12px;
     color: var(--text-dim);
   }
+  /* Team section */
+  .team-section {
+    padding: 64px 0 96px;
+    border-top: 1px solid var(--border);
+  }
+  .team-section h2 {
+    font-size: clamp(22px, 3vw, 30px);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin: 0 0 40px;
+  }
+  .team-card {
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    gap: 24px;
+    align-items: start;
+    max-width: 720px;
+  }
+  .team-avatar {
+    width: 64px; height: 64px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--blue) 0%, var(--green) 100%);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--mono); font-weight: 700; font-size: 20px;
+    color: #060c0f;
+    flex-shrink: 0;
+    letter-spacing: -0.02em;
+  }
+  .team-info { display: flex; flex-direction: column; gap: 4px; }
+  .team-name {
+    font-size: 18px; font-weight: 700;
+    color: var(--text); letter-spacing: -0.01em;
+  }
+  .team-title {
+    font-family: var(--mono); font-size: 12px;
+    color: var(--green); letter-spacing: 0.06em;
+    text-transform: uppercase; margin-bottom: 12px;
+  }
+  .team-bio {
+    font-size: 16px; color: var(--text-muted);
+    line-height: 1.75; margin: 0 0 16px;
+  }
+  .team-link {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 13px; font-weight: 500; color: var(--text-muted);
+    font-family: var(--mono);
+  }
+  .team-link:hover { color: var(--green); text-decoration: none; }
+  .team-link svg { width: 14px; height: 14px; }
   /* Social links */
   .social-links {
     display: flex;
@@ -206,6 +255,25 @@
         </a>
       </div>
     </aside>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="team-section">
+    <div class="section-eyebrow">Team</div>
+    <h2>The people behind Kysira.</h2>
+    <div class="team-card">
+      <div class="team-avatar" aria-hidden="true">FS</div>
+      <div class="team-info">
+        <div class="team-name">Fabian Schonholz</div>
+        <div class="team-title">Founder &amp; CEO</div>
+        <p class="team-bio">Fabian has spent 20+ years building technology organizations that create measurable business value — with 3 direct exits and a hand in 4 more. He's led Engineering, Product, Data, and AI teams across enterprise, media, gaming, SaaS, and healthcare at companies including NBCUniversal, Microsoft Game Studios, and Prodege. His AI-driven systems have generated $40M+ in incremental revenue, reduced fraud by 30%, and improved customer retention by 19% at scale.</p>
+        <a class="team-link" href="https://www.linkedin.com/in/fabianschonholz/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          linkedin.com/in/fabianschonholz
+        </a>
+      </div>
+    </div>
   </div>
 </div>
 
