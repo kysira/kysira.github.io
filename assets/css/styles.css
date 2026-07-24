@@ -429,3 +429,13 @@ footer .copy { color: var(--text-dim); }
 }
 .attr-name { font-weight: 600; font-size: 14px; color: var(--heading); }
 .attr-role { font-size: 13px; color: var(--text-muted); margin-top: 3px; }
+
+.pull-quote {
+  margin: 24px 0 0;
+  padding-left: 20px;
+  border-left: 2px solid var(--brand);
+  color: var(--heading);
+  font-size: 18px;
+  line-height: 1.6;
+  font-style: italic;
+}
