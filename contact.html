@@ -35,6 +35,14 @@
     margin: 0;
     max-width: 640px;
   }
+  .contact-primary {
+    margin: 24px 0 0 !important;
+    font-family: var(--mono);
+    font-size: clamp(20px, 3vw, 26px);
+    font-weight: 600;
+  }
+  .contact-primary a { color: var(--fg-brand-strong); }
+  .contact-primary a:hover { color: var(--heading); }
   .contact-body {
     padding: 64px 0 32px;
     display: grid;
@@ -169,7 +177,8 @@
   <div class="page-header">
     <div class="section-eyebrow">Contact</div>
     <h1>Talk to the team.</h1>
-    <p>Whether you want a walkthrough, a security question answered, or help getting a proxy in front of your app — a human at Kysira will read your message and reply.</p>
+    <p>One address reaches us, and a human reads it. Put the topic in the subject line and it gets routed to the right person the same day.</p>
+    <p class="contact-primary"><a href="mailto:support@kysira.ai">support@kysira.ai</a></p>
   </div>
 
   <div class="contact-body">
@@ -177,33 +186,33 @@
       <div class="contact-grid">
         <div class="contact-card">
           <h3>Sales &amp; demos</h3>
-          <p>See Kysira scoring your own traffic, talk pricing, or start a pilot. Fastest way to reach us.</p>
-          <a class="mail" href="mailto:sales@kysira.ai">sales@kysira.ai</a>
+          <p>See Kysira scoring your own traffic, talk pricing, or start a pilot.</p>
+          <a class="mail" href="mailto:support@kysira.ai?subject=Demo%20request">Subject: Demo request</a>
         </div>
         <div class="contact-card">
           <h3>Product support</h3>
           <p>Deployment help, threshold tuning, false positives, license keys, or anything else about a running install.</p>
-          <a class="mail" href="mailto:support@kysira.ai">support@kysira.ai</a>
+          <a class="mail" href="mailto:support@kysira.ai?subject=Support">Subject: Support</a>
         </div>
         <div class="contact-card">
           <h3>Security disclosure</h3>
-          <p>Found a vulnerability in Kysira? Report it here. We acknowledge reports within two business days and will not pursue legal action for good-faith research.</p>
-          <a class="mail" href="mailto:security@kysira.ai">security@kysira.ai</a>
+          <p>Found a vulnerability in Kysira? We acknowledge reports within two business days and will not pursue legal action for good-faith research.</p>
+          <a class="mail" href="mailto:support@kysira.ai?subject=Security%20disclosure">Subject: Security disclosure</a>
         </div>
         <div class="contact-card">
           <h3>Privacy &amp; legal</h3>
           <p>Data subject requests, DPAs, subpoenas, and questions about our <a href="/terms.html">Terms</a> or <a href="/privacy.html">Privacy Policy</a>.</p>
-          <a class="mail" href="mailto:legal@kysira.ai">legal@kysira.ai</a>
+          <a class="mail" href="mailto:support@kysira.ai?subject=Legal">Subject: Legal</a>
         </div>
         <div class="contact-card">
           <h3>Press &amp; partnerships</h3>
           <p>Media inquiries, analyst briefings, integration and reseller partnerships.</p>
-          <a class="mail" href="mailto:press@kysira.ai">press@kysira.ai</a>
+          <a class="mail" href="mailto:support@kysira.ai?subject=Press">Subject: Press</a>
         </div>
         <div class="contact-card">
           <h3>Careers</h3>
           <p>We hire security engineers and ML engineers who like low-latency systems. Send a note and what you have built.</p>
-          <a class="mail" href="mailto:careers@kysira.ai">careers@kysira.ai</a>
+          <a class="mail" href="mailto:support@kysira.ai?subject=Careers">Subject: Careers</a>
         </div>
       </div>
     </div>
@@ -247,7 +256,7 @@
 
 <div class="wrap">
   <div class="hours">
-    <p>We answer email Monday through Friday, 9am–6pm Mountain Time. Security disclosures sent to <a href="mailto:security@kysira.ai">security@kysira.ai</a> are triaged every day, including weekends. If you are an existing customer with a production incident, include your license key or account email in the subject line and we will prioritize it.</p>
+    <p>We answer email Monday through Friday, 9am–6pm Mountain Time. Security disclosures sent to <a href="mailto:support@kysira.ai">support@kysira.ai</a> are triaged every day, including weekends. If you are an existing customer with a production incident, include your license key or account email in the subject line and we will prioritize it.</p>
   </div>
 </div>
 
