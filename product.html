@@ -317,46 +317,47 @@
   <div class="wrap">
     <div class="section-eyebrow">Product updates</div>
     <h2>What we shipped recently.</h2>
+    <p class="lead">A running log of proxy, inference, and dashboard releases. Full history on the <a href="https://docs.kysira.ai/releases/" target="_blank" rel="noopener">docs site →</a></p>
 
     <div class="changelog">
       <div class="release">
         <div class="release-meta">
-          <span class="release-ver">Envoy ext-proc</span>
-          <span class="release-date">2026</span>
+          <span class="release-ver">v0.5.0</span>
+          <span class="release-date">Jul 27, 2026</span>
         </div>
         <div>
-          <h4>External processing filter for service meshes</h4>
-          <p>Kysira now runs as an Envoy external-processing filter, so teams already on a mesh or a Google Cloud load balancer can score traffic without introducing another hop.</p>
+          <h4>License key embedded at build time</h4>
+          <p>The proxy image now carries its verification key from build, wired straight into the customer Kubernetes chart — no manual key distribution. Also: the WAF enforcement toggle now requires an authenticated admin token, and enforcement modes and rollout are fully documented.</p>
         </div>
       </div>
       <div class="release">
         <div class="release-meta">
-          <span class="release-ver">Licensing</span>
-          <span class="release-date">2026</span>
+          <span class="release-ver">v0.4.0</span>
+          <span class="release-date">Jun 26, 2026</span>
         </div>
         <div>
-          <h4>Self-service license keys and registry access</h4>
-          <p>Issue and revoke per-environment license keys from the console, with container registry access and agent certificates provisioned automatically.</p>
+          <h4>Decision-log tooling</h4>
+          <p>A script and runbook for pulling and summarizing ext-proc decision logs, broken down by enforcement impact — useful when tuning thresholds after a shadow-mode run.</p>
         </div>
       </div>
       <div class="release">
         <div class="release-meta">
-          <span class="release-ver">Detection</span>
-          <span class="release-date">2026</span>
+          <span class="release-ver">v0.2.0–v0.2.3</span>
+          <span class="release-date">Jun 17–21, 2026</span>
         </div>
         <div>
-          <h4>Coverage beyond injection</h4>
-          <p>Expanded from SQL injection to the full OWASP Top 10 plus prompt injection, each backed by a model tuned for that threat class rather than a shared rule set.</p>
+          <h4>New detection coverage, licensing service, dashboard redesign</h4>
+          <p>Added keyless JWT abuse and insecure deserialization detection (OWASP A07/A08), moved license issuance into the infra container for self-service keys, and shipped the current "Defense Grid" threat-monitor visualization.</p>
         </div>
       </div>
       <div class="release">
         <div class="release-meta">
-          <span class="release-ver">Console</span>
-          <span class="release-date">2026</span>
+          <span class="release-ver">v0.1.x-alpha</span>
+          <span class="release-date">Jun 9–12, 2026</span>
         </div>
         <div>
-          <h4>Team accounts and invitations</h4>
-          <p>Company accounts with role-based access, teammate invitations, and per-user profiles so security and platform teams can share one deployment view.</p>
+          <h4>Argus detection engine</h4>
+          <p>First alpha releases: the model-based Argus detection engine, per-verdict engine badges (Argus AI / Model / Signature) in the dashboard, and initial latency and detection metrics.</p>
         </div>
       </div>
     </div>

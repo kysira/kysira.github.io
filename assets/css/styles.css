@@ -455,9 +455,8 @@ footer .copy { color: var(--text-dim); }
 
 /* ---------- Trust strip ---------- */
 .trust-grid {
-  display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 36px;
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-top: 36px;
 }
-@media (max-width: 900px) { .trust-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 560px) { .trust-grid { grid-template-columns: 1fr; } }
 .trust-card {
   background: var(--bg-panel);
