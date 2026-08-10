@@ -89,7 +89,7 @@
     align-items: center;
     gap: 8px;
   }
-  .info-value a:hover { color: var(--green); text-decoration: none; }
+  .info-value a:hover { color: var(--fg-brand); text-decoration: none; }
   /* External link icon */
   .ext::after {
     content: "↗";
@@ -133,7 +133,7 @@
   }
   .team-title {
     font-family: var(--mono); font-size: 12px;
-    color: var(--green); letter-spacing: 0.06em;
+    color: var(--fg-brand); letter-spacing: 0.06em;
     text-transform: uppercase; margin-bottom: 12px;
   }
   .team-bio {
@@ -145,7 +145,7 @@
     font-size: 13px; font-weight: 500; color: var(--text-muted);
     font-family: var(--mono);
   }
-  .team-link:hover { color: var(--green); text-decoration: none; }
+  .team-link:hover { color: var(--fg-brand); text-decoration: none; }
   .team-link svg { width: 14px; height: 14px; }
   /* Social links */
   .social-links {
@@ -168,8 +168,8 @@
     transition: border-color 0.15s, color 0.15s;
   }
   .social-link:hover {
-    border-color: var(--green);
-    color: var(--green);
+    border-color: var(--fg-brand);
+    color: var(--fg-brand);
     text-decoration: none;
   }
   .social-icon {
@@ -178,7 +178,7 @@
     flex-shrink: 0;
     color: var(--text-muted);
   }
-  .social-link:hover .social-icon { color: var(--green); }
+  .social-link:hover .social-icon { color: var(--fg-brand); }
 </style>
 </head>
 
@@ -199,10 +199,12 @@
       kysira
     </a>
     <div class="links">
+      <a href="/product.html">Product</a>
       <a href="/#how">How it works</a>
-      <a href="/#why">Why switch</a>
-      <a href="/#faq">FAQ</a>
-      <a class="cta" href="https://live.kysira.ai" target="_blank" rel="noopener">Live →</a>
+      <a href="https://docs.kysira.ai" target="_blank" rel="noopener">Docs</a>
+      <a href="/about.html">About</a>
+      <a href="/contact.html">Contact</a>
+      <a class="cta" href="https://app.kysira.ai/register" target="_blank" rel="noopener">Get started →</a>
     </div>
   </div>
 </nav>
@@ -225,15 +227,19 @@
       <div class="info-card">
         <h3>Company info</h3>
         <div class="info-row">
-          <span class="info-label">Legal name</span>
+          <span class="info-label">Registered name</span>
           <span class="info-value">Kysira Corporation</span>
         </div>
         <div class="info-row">
-          <span class="info-label">Location</span>
-          <span class="info-value">Salt Lake City, UT</span>
+          <span class="info-label">Registered address</span>
+          <span class="info-value">251 Little Falls Drive<br>Wilmington, DE 19808<br>New Castle County<br>United States</span>
         </div>
         <div class="info-row">
-          <span class="info-label">Contact</span>
+          <span class="info-label">Operations</span>
+          <span class="info-value">Salt Lake City, Utah, USA</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Business email</span>
           <span class="info-value"><a href="mailto:support@kysira.ai">support@kysira.ai</a></span>
         </div>
         <div class="info-row">
@@ -288,12 +294,15 @@
         <img src="assets/images/kysira-logo.png" alt="" class="brand-logo" aria-hidden="true" />
         kysira
       </a>
-      <span class="copy">© 2026 Kysira. Cyber attacks die at the door.</span>
+      <span class="copy">© 2026 Kysira Corporation. Cyber attacks die at the door.</span>
     </div>
     <div>
+      <a href="/product.html">Product</a>
+      <a href="https://docs.kysira.ai" target="_blank" rel="noopener">Docs</a>
       <a href="https://live.kysira.ai" target="_blank" rel="noopener">Live Monitor</a>
-      <a href="https://shop.kysira.ai" target="_blank" rel="noopener">OWASP Site</a>
-      <a href="mailto:hello@kysira.ai">Contact</a>
+      <a href="/about.html">About</a>
+      <a href="/contact.html">Contact</a>
+      <a href="/privacy.html">Privacy</a>
       <a href="/terms.html">Terms</a>
       <a href="https://www.linkedin.com/company/kysira/" target="_blank" rel="noopener">LinkedIn</a>
     </div>

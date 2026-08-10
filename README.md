@@ -44,6 +44,19 @@ To serve at `kysira.ai` (or similar):
 
 ## Editing
 
-Everything is in `index.html` — HTML, CSS, JS in one file. Edit, push, deploy.
+Static HTML with a shared stylesheet at `assets/css/styles.css`. No build step — edit, push, deploy.
 
-Sections, in order: nav, hero (with simulated kill feed), stats strip, problem, how-it-works, why-now, FAQ, CTA band, footer.
+Pages:
+
+| File | Purpose |
+| --- | --- |
+| `index.html` | Home: hero, stats, problem, how-it-works, product showcase, why-switch, trust signals, FAQ, CTA |
+| `product.html` | Product tour: real screenshots, capabilities, get-started steps, product updates |
+| `about.html` | Company story, company details, team |
+| `contact.html` | Contact routes, registered company details, business hours |
+| `privacy.html` | Privacy Policy |
+| `terms.html` | Terms of Service |
+
+Nav and footer are duplicated per page — if you change one, change all six. The footer must keep the Privacy and Terms links (required by Google Cloud and other vendor reviews).
+
+Product screenshots live in `assets/images/screenshots/` and are real captures of `live.kysira.ai`, `app.kysira.ai/register`, and `docs.kysira.ai`. Re-capture them when the product UI changes.

@@ -1,0 +1,400 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Product — Kysira</title>
+<meta name="description" content="See the Kysira product: the live kill monitor, the dashboard, license and deployment management, and the docs. Sign up free and deploy in shadow mode in minutes." />
+<meta name="theme-color" content="#000000" />
+
+<meta property="og:title" content="Kysira Product — see it kill an attack" />
+<meta property="og:description" content="Screenshots and features of the Kysira AI reverse proxy: live monitor, dashboard, shadow mode, license management, docs." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://kysira.ai/product.html" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css">
+
+<style>
+  .page-header {
+    padding: 72px 0 48px;
+    border-bottom: 1px solid var(--border);
+  }
+  .page-header h1 {
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    margin: 16px 0 14px;
+  }
+  .page-header p {
+    color: var(--text-muted);
+    font-size: 18px;
+    line-height: 1.7;
+    margin: 0 0 28px;
+    max-width: 680px;
+  }
+  .page-header .btns { display: flex; gap: 14px; flex-wrap: wrap; }
+
+  /* Screenshot showcase */
+  .shot {
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    background: var(--bg-panel);
+    box-shadow: 0 24px 60px rgba(0,0,0,0.5);
+  }
+  .shot img { display: block; width: 100%; height: auto; }
+  .shot-caption {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text-dim);
+    letter-spacing: 0.04em;
+    padding: 12px 16px;
+    border-top: 1px solid var(--border);
+    background: var(--bg-elev);
+  }
+  .feature-row {
+    display: grid;
+    grid-template-columns: minmax(0, 420px) minmax(0, 1fr);
+    gap: 56px;
+    align-items: center;
+    margin-top: 48px;
+  }
+  .feature-row.flip { grid-template-columns: minmax(0, 1fr) minmax(0, 420px); }
+  .feature-row.flip .feature-copy { order: 2; }
+  .feature-row.flip .shot { order: 1; }
+  @media (max-width: 900px) {
+    .feature-row, .feature-row.flip { grid-template-columns: 1fr; gap: 28px; }
+    .feature-row.flip .feature-copy { order: 1; }
+    .feature-row.flip .shot { order: 2; }
+  }
+  .feature-copy h3 {
+    font-size: clamp(22px, 3vw, 28px);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin: 0 0 14px;
+    color: var(--heading);
+  }
+  .feature-copy p {
+    color: var(--text-muted);
+    font-size: 16px;
+    line-height: 1.75;
+    margin: 0 0 16px;
+  }
+  .feature-copy ul {
+    margin: 0 0 20px;
+    padding-left: 18px;
+    color: var(--text-muted);
+    font-size: 15px;
+    line-height: 1.8;
+  }
+  .feature-copy a.inline-link { font-size: 15px; font-weight: 500; }
+
+  /* Get started steps */
+  .start-steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 40px;
+  }
+  @media (max-width: 820px) { .start-steps { grid-template-columns: 1fr; } }
+  .start-step {
+    background: var(--bg-panel);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 28px;
+  }
+  .start-step .num {
+    font-size: 12px; font-weight: 600; color: var(--fg-brand-strong);
+    letter-spacing: 0.1em; text-transform: uppercase;
+  }
+  .start-step h4 {
+    margin: 10px 0 8px; font-size: 20px; font-weight: 600;
+    letter-spacing: -0.01em; color: var(--heading);
+  }
+  .start-step p { margin: 0 0 14px; color: var(--text-muted); font-size: 16px; }
+  .start-step pre {
+    margin: 0;
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+    overflow-x: auto;
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--text);
+  }
+
+  /* Changelog */
+  .changelog { display: flex; flex-direction: column; gap: 0; max-width: 820px; margin-top: 36px; }
+  .release {
+    display: grid;
+    grid-template-columns: 150px minmax(0, 1fr);
+    gap: 32px;
+    padding: 26px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .release:last-child { border-bottom: none; }
+  @media (max-width: 720px) { .release { grid-template-columns: 1fr; gap: 10px; } }
+  .release-meta { display: flex; flex-direction: column; gap: 6px; }
+  .release-ver {
+    font-family: var(--mono); font-size: 13px; font-weight: 600;
+    color: var(--fg-brand-strong);
+  }
+  .release-date { font-family: var(--mono); font-size: 12px; color: var(--text-dim); }
+  .release h4 { margin: 0 0 8px; font-size: 17px; font-weight: 600; color: var(--heading); }
+  .release p { margin: 0; color: var(--text-muted); font-size: 15px; line-height: 1.75; }
+</style>
+</head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-09EENK375X"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-09EENK375X');
+</script>
+<body>
+
+<nav class="top">
+  <div class="wrap">
+    <a class="brand" href="/">
+      <img src="assets/images/kysira-logo.png" alt="" class="brand-logo" aria-hidden="true" />
+      kysira
+    </a>
+    <div class="links">
+      <a href="/product.html">Product</a>
+      <a href="/#how">How it works</a>
+      <a href="https://docs.kysira.ai" target="_blank" rel="noopener">Docs</a>
+      <a href="/about.html">About</a>
+      <a href="/contact.html">Contact</a>
+      <a class="cta" href="https://app.kysira.ai/register" target="_blank" rel="noopener">Get started →</a>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap">
+  <div class="page-header">
+    <div class="section-eyebrow">Product</div>
+    <h1>The whole product, on one page.</h1>
+    <p>Kysira is a reverse proxy plus a control plane. The proxy scores and kills attacks on the request hot path. The control plane is where you watch it happen, tune it, and manage deployments across your fleet.</p>
+    <div class="btns">
+      <a class="btn btn-primary" href="https://app.kysira.ai/register" target="_blank" rel="noopener">Get started free →</a>
+      <a class="btn btn-ghost" href="https://live.kysira.ai" target="_blank" rel="noopener">Open the live monitor</a>
+    </div>
+  </div>
+</div>
+
+<section class="block" id="features">
+  <div class="wrap">
+    <div class="section-eyebrow">Inside the product</div>
+    <h2>Watch every request get scored, and every attack die.</h2>
+
+    <div class="feature-row">
+      <div class="feature-copy">
+        <h3>Live kill monitor</h3>
+        <p>A public, always-on instance running a deliberately vulnerable web app behind a real Kysira proxy. Every request that hits it is scored in front of you, with the model's confidence and the reason it made the call.</p>
+        <ul>
+          <li>Per-request score, verdict, and latency</li>
+          <li>Human-readable reason for every decision</li>
+          <li>Throw your own payload at it — no account required</li>
+        </ul>
+        <a class="inline-link" href="https://live.kysira.ai" target="_blank" rel="noopener">Try it live →</a>
+      </div>
+      <figure class="shot">
+        <img src="assets/images/screenshots/live-monitor.png" alt="The Kysira live monitor showing inbound HTTP requests being scored and blocked in real time" loading="lazy" />
+        <figcaption class="shot-caption">live.kysira.ai — real requests, scored and killed in real time</figcaption>
+      </figure>
+    </div>
+
+    <div class="feature-row flip">
+      <div class="feature-copy">
+        <h3>Your account and deployments</h3>
+        <p>Create a company account in one step, invite your team, and issue license keys for each proxy you deploy. Everything a running install needs — keys, image access, certificates — is managed from the same console.</p>
+        <ul>
+          <li>Company account with role-based team access</li>
+          <li>License keys per environment or per cluster</li>
+          <li>Container registry access and agent certificates</li>
+          <li>Ingest logs so you can confirm telemetry is flowing</li>
+        </ul>
+        <a class="inline-link" href="https://app.kysira.ai/register" target="_blank" rel="noopener">Create an account →</a>
+      </div>
+      <figure class="shot">
+        <img src="assets/images/screenshots/app-register.png" alt="The Kysira sign-up screen, creating a company and admin account in one step" loading="lazy" />
+        <figcaption class="shot-caption">app.kysira.ai/register — company and admin account in one step</figcaption>
+      </figure>
+    </div>
+
+    <div class="feature-row">
+      <div class="feature-copy">
+        <h3>Documentation that gets you running</h3>
+        <p>Full public docs covering quickstart, licensing, deployment models, detection architecture, observability, the API reference, and troubleshooting. No sales call required to read how it works.</p>
+        <ul>
+          <li>Quickstart for proxy, sidecar, and gRPC filter deployments</li>
+          <li>Detection architecture and how scoring is done</li>
+          <li>API reference and observability/metrics wiring</li>
+        </ul>
+        <a class="inline-link" href="https://docs.kysira.ai" target="_blank" rel="noopener">Read the docs →</a>
+      </div>
+      <figure class="shot">
+        <img src="assets/images/screenshots/docs.png" alt="Kysira documentation site showing deployment safety, how it works, and deployment models" loading="lazy" />
+        <figcaption class="shot-caption">docs.kysira.ai — public product documentation</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="capabilities">
+  <div class="wrap">
+    <div class="section-eyebrow">Capabilities</div>
+    <h2>What you get out of the box.</h2>
+    <div class="why-grid">
+      <div class="why-card">
+        <h4><span class="icon">◐</span>Shadow mode by default</h4>
+        <p>New deployments score and log every request without blocking anything. Run shadow for as long as you want, review what would have been killed, then flip one toggle to enforce.</p>
+      </div>
+      <div class="why-card">
+        <h4><span class="icon">↺</span>Fail-open architecture</h4>
+        <p>If Kysira is unreachable or times out, the request passes through unmodified. A Kysira outage never becomes an application outage.</p>
+      </div>
+      <div class="why-card">
+        <h4><span class="icon">⊞</span>Full OWASP Top 10 coverage</h4>
+        <p>SQL injection, XSS, command injection, SSRF, path traversal, prompt injection, credential stuffing. One architecture, a tailored model per threat class.</p>
+      </div>
+      <div class="why-card">
+        <h4><span class="icon">◇</span>Three deployment models</h4>
+        <p>Run it as a standalone reverse proxy, as a sidecar next to your app, or as an Envoy external-processing filter in an existing service mesh.</p>
+      </div>
+      <div class="why-card">
+        <h4><span class="icon">⏱</span>Sub-100ms end to end</h4>
+        <p>Compact purpose-built classifiers baked into the image. No cold start, no GPU, CPU-only inference over loopback.</p>
+      </div>
+      <div class="why-card">
+        <h4><span class="icon">≡</span>Explainable decisions</h4>
+        <p>Every verdict comes with a score and a plain-language reason, logged and surfaced in the dashboard. Regex engines can't tell you why.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="get-started">
+  <div class="wrap">
+    <div class="section-eyebrow">Get started</div>
+    <h2>Running in shadow mode in about ten minutes.</h2>
+    <p class="lead">No sales call, no procurement cycle. Create an account, pull the image, point it at your app.</p>
+
+    <div class="start-steps">
+      <div class="start-step">
+        <div class="num">Step one</div>
+        <h4>Create your account</h4>
+        <p>Company and admin user in a single form. You get a license key immediately.</p>
+        <a class="btn btn-primary" href="https://app.kysira.ai/register" target="_blank" rel="noopener">Sign up free →</a>
+      </div>
+      <div class="start-step">
+        <div class="num">Step two</div>
+        <h4>Run the container</h4>
+        <p>One container in front of your app. No SDK, no code changes.</p>
+        <pre>docker run -d \
+  -e KYSIRA_LICENSE_KEY=... \
+  -e KYSIRA_UPSTREAM=http://app:8080 \
+  -p 8443:8443 \
+  kysira/proxy:latest</pre>
+      </div>
+      <div class="start-step">
+        <div class="num">Step three</div>
+        <h4>Review, then enforce</h4>
+        <p>Watch the shadow-mode decisions in your dashboard. When the numbers look right, turn on blocking.</p>
+        <a class="btn btn-ghost" href="https://docs.kysira.ai" target="_blank" rel="noopener">Deployment guide →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="updates">
+  <div class="wrap">
+    <div class="section-eyebrow">Product updates</div>
+    <h2>What we shipped recently.</h2>
+
+    <div class="changelog">
+      <div class="release">
+        <div class="release-meta">
+          <span class="release-ver">Envoy ext-proc</span>
+          <span class="release-date">2026</span>
+        </div>
+        <div>
+          <h4>External processing filter for service meshes</h4>
+          <p>Kysira now runs as an Envoy external-processing filter, so teams already on a mesh or a Google Cloud load balancer can score traffic without introducing another hop.</p>
+        </div>
+      </div>
+      <div class="release">
+        <div class="release-meta">
+          <span class="release-ver">Licensing</span>
+          <span class="release-date">2026</span>
+        </div>
+        <div>
+          <h4>Self-service license keys and registry access</h4>
+          <p>Issue and revoke per-environment license keys from the console, with container registry access and agent certificates provisioned automatically.</p>
+        </div>
+      </div>
+      <div class="release">
+        <div class="release-meta">
+          <span class="release-ver">Detection</span>
+          <span class="release-date">2026</span>
+        </div>
+        <div>
+          <h4>Coverage beyond injection</h4>
+          <p>Expanded from SQL injection to the full OWASP Top 10 plus prompt injection, each backed by a model tuned for that threat class rather than a shared rule set.</p>
+        </div>
+      </div>
+      <div class="release">
+        <div class="release-meta">
+          <span class="release-ver">Console</span>
+          <span class="release-date">2026</span>
+        </div>
+        <div>
+          <h4>Team accounts and invitations</h4>
+          <p>Company accounts with role-based access, teammate invitations, and per-user profiles so security and platform teams can share one deployment view.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="wrap">
+    <h2>See an attack die in 40 milliseconds.</h2>
+    <p>Start free, run it in shadow mode, decide for yourself.</p>
+    <div class="btns">
+      <a class="btn btn-primary" href="https://app.kysira.ai/register" target="_blank" rel="noopener">Get started free →</a>
+      <a class="btn btn-ghost" href="/contact.html">Talk to the team</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="left">
+      <a class="brand" href="/">
+        <img src="assets/images/kysira-logo.png" alt="" class="brand-logo" aria-hidden="true" />
+        kysira
+      </a>
+      <span class="copy">© 2026 Kysira Corporation. Cyber attacks die at the door.</span>
+    </div>
+    <div>
+      <a href="/product.html">Product</a>
+      <a href="https://docs.kysira.ai" target="_blank" rel="noopener">Docs</a>
+      <a href="https://live.kysira.ai" target="_blank" rel="noopener">Live Monitor</a>
+      <a href="/about.html">About</a>
+      <a href="/contact.html">Contact</a>
+      <a href="/privacy.html">Privacy</a>
+      <a href="/terms.html">Terms</a>
+      <a href="https://www.linkedin.com/company/kysira/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Contact — Kysira</title>
+<meta name="description" content="Get in touch with Kysira Corporation: sales, support, security, and press contacts, plus our registered business address." />
+<meta name="theme-color" content="#000000" />
+
+<meta property="og:title" content="Contact Kysira" />
+<meta property="og:description" content="Talk to the Kysira team — sales, support, security disclosure, and press." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://kysira.ai/contact.html" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css">
+
+<style>
+  .page-header {
+    padding: 72px 0 48px;
+    border-bottom: 1px solid var(--border);
+  }
+  .page-header h1 {
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    margin: 16px 0 12px;
+  }
+  .page-header p {
+    color: var(--text-muted);
+    font-size: 18px;
+    line-height: 1.7;
+    margin: 0;
+    max-width: 640px;
+  }
+  .contact-body {
+    padding: 64px 0 32px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 340px;
+    gap: 64px;
+    align-items: start;
+  }
+  @media (max-width: 900px) {
+    .contact-body { grid-template-columns: 1fr; gap: 48px; }
+  }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  @media (max-width: 640px) { .contact-grid { grid-template-columns: 1fr; } }
+  .contact-card {
+    background: var(--bg-panel);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 28px;
+    transition: border-color 0.2s ease;
+  }
+  .contact-card:hover { border-color: var(--border-strong); }
+  .contact-card h3 {
+    margin: 0 0 8px;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--heading);
+  }
+  .contact-card p {
+    margin: 0 0 14px;
+    color: var(--text-muted);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+  .contact-card a.mail {
+    font-family: var(--mono);
+    font-size: 14px;
+    color: var(--fg-brand);
+  }
+  .contact-card a.mail:hover { color: var(--fg-brand-strong); }
+  /* Address / info card */
+  .info-card {
+    background: var(--bg-panel);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 28px;
+    position: sticky;
+    top: 84px;
+  }
+  .info-card h3 {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-dim);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin: 0 0 20px;
+  }
+  .info-row {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .info-row:last-child { border-bottom: none; padding-bottom: 0; }
+  .info-row:first-of-type { padding-top: 0; }
+  .info-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-dim);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .info-value {
+    font-size: 15px;
+    color: var(--text);
+    font-weight: 500;
+    line-height: 1.6;
+  }
+  .info-value a { color: var(--text); }
+  .info-value a:hover { color: var(--fg-brand); }
+  .form-cta {
+    margin-top: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .form-cta .btn { justify-content: center; text-align: center; }
+  .hours {
+    padding: 0 0 96px;
+  }
+  .hours p {
+    color: var(--text-muted);
+    font-size: 15px;
+    line-height: 1.75;
+    max-width: 720px;
+    margin: 0;
+  }
+</style>
+</head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-09EENK375X"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-09EENK375X');
+</script>
+<body>
+
+<nav class="top">
+  <div class="wrap">
+    <a class="brand" href="/">
+      <img src="assets/images/kysira-logo.png" alt="" class="brand-logo" aria-hidden="true" />
+      kysira
+    </a>
+    <div class="links">
+      <a href="/product.html">Product</a>
+      <a href="/#how">How it works</a>
+      <a href="https://docs.kysira.ai" target="_blank" rel="noopener">Docs</a>
+      <a href="/about.html">About</a>
+      <a href="/contact.html">Contact</a>
+      <a class="cta" href="https://app.kysira.ai/register" target="_blank" rel="noopener">Get started →</a>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap">
+  <div class="page-header">
+    <div class="section-eyebrow">Contact</div>
+    <h1>Talk to the team.</h1>
+    <p>Whether you want a walkthrough, a security question answered, or help getting a proxy in front of your app — a human at Kysira will read your message and reply.</p>
+  </div>
+
+  <div class="contact-body">
+    <div>
+      <div class="contact-grid">
+        <div class="contact-card">
+          <h3>Sales &amp; demos</h3>
+          <p>See Kysira scoring your own traffic, talk pricing, or start a pilot. Fastest way to reach us.</p>
+          <a class="mail" href="mailto:sales@kysira.ai">sales@kysira.ai</a>
+        </div>
+        <div class="contact-card">
+          <h3>Product support</h3>
+          <p>Deployment help, threshold tuning, false positives, license keys, or anything else about a running install.</p>
+          <a class="mail" href="mailto:support@kysira.ai">support@kysira.ai</a>
+        </div>
+        <div class="contact-card">
+          <h3>Security disclosure</h3>
+          <p>Found a vulnerability in Kysira? Report it here. We acknowledge reports within two business days and will not pursue legal action for good-faith research.</p>
+          <a class="mail" href="mailto:security@kysira.ai">security@kysira.ai</a>
+        </div>
+        <div class="contact-card">
+          <h3>Privacy &amp; legal</h3>
+          <p>Data subject requests, DPAs, subpoenas, and questions about our <a href="/terms.html">Terms</a> or <a href="/privacy.html">Privacy Policy</a>.</p>
+          <a class="mail" href="mailto:legal@kysira.ai">legal@kysira.ai</a>
+        </div>
+        <div class="contact-card">
+          <h3>Press &amp; partnerships</h3>
+          <p>Media inquiries, analyst briefings, integration and reseller partnerships.</p>
+          <a class="mail" href="mailto:press@kysira.ai">press@kysira.ai</a>
+        </div>
+        <div class="contact-card">
+          <h3>Careers</h3>
+          <p>We hire security engineers and ML engineers who like low-latency systems. Send a note and what you have built.</p>
+          <a class="mail" href="mailto:careers@kysira.ai">careers@kysira.ai</a>
+        </div>
+      </div>
+    </div>
+
+    <aside>
+      <div class="info-card">
+        <h3>Company details</h3>
+        <div class="info-row">
+          <span class="info-label">Registered name</span>
+          <span class="info-value">Kysira Corporation</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Registered address</span>
+          <span class="info-value">251 Little Falls Drive<br>Wilmington, DE 19808<br>New Castle County<br>United States</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Operations</span>
+          <span class="info-value">Salt Lake City, Utah, USA</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Business email</span>
+          <span class="info-value"><a href="mailto:support@kysira.ai">support@kysira.ai</a></span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Website</span>
+          <span class="info-value"><a href="https://kysira.ai">kysira.ai</a></span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">LinkedIn</span>
+          <span class="info-value"><a href="https://www.linkedin.com/company/kysira/" target="_blank" rel="noopener">linkedin.com/company/kysira</a></span>
+        </div>
+      </div>
+
+      <div class="form-cta">
+        <a class="btn btn-primary" href="https://forms.gle/uwxGqxLvbDer7f1r8" target="_blank" rel="noopener">Book a demo →</a>
+        <a class="btn btn-ghost" href="https://app.kysira.ai/register" target="_blank" rel="noopener">Create an account</a>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="hours">
+    <p>We answer email Monday through Friday, 9am–6pm Mountain Time. Security disclosures sent to <a href="mailto:security@kysira.ai">security@kysira.ai</a> are triaged every day, including weekends. If you are an existing customer with a production incident, include your license key or account email in the subject line and we will prioritize it.</p>
+  </div>
+</div>
+
+<section class="cta-band">
+  <div class="wrap">
+    <h2>Or just watch it work.</h2>
+    <p>The live monitor is a deliberately vulnerable app behind a real Kysira proxy. Throw a payload at it.</p>
+    <div class="btns">
+      <a class="btn btn-primary" href="https://live.kysira.ai" target="_blank" rel="noopener">Open the live monitor →</a>
+      <a class="btn btn-ghost" href="https://docs.kysira.ai" target="_blank" rel="noopener">Read the docs</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="left">
+      <a class="brand" href="/">
+        <img src="assets/images/kysira-logo.png" alt="" class="brand-logo" aria-hidden="true" />
+        kysira
+      </a>
+      <span class="copy">© 2026 Kysira Corporation. Cyber attacks die at the door.</span>
+    </div>
+    <div>
+      <a href="/product.html">Product</a>
+      <a href="https://docs.kysira.ai" target="_blank" rel="noopener">Docs</a>
+      <a href="https://live.kysira.ai" target="_blank" rel="noopener">Live Monitor</a>
+      <a href="/about.html">About</a>
+      <a href="/contact.html">Contact</a>
+      <a href="/privacy.html">Privacy</a>
+      <a href="/terms.html">Terms</a>
+      <a href="https://www.linkedin.com/company/kysira/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
