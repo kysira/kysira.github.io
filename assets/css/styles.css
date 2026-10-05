@@ -480,3 +480,10 @@ footer .copy { color: var(--text-dim); }
   line-height: 1.6;
   font-style: italic;
 }
+
+/* Short product pages (argus / atlas / olympus) */
+.page-header { padding: 72px 0 48px; border-bottom: 1px solid var(--border); }
+.page-header h1 { font-size: clamp(28px, 4vw, 44px); font-weight: 700; letter-spacing: -0.025em; margin: 16px 0 14px; }
+.page-header p { color: var(--text-muted); font-size: 18px; line-height: 1.7; margin: 0 0 28px; max-width: 680px; }
+.page-header .btns { display: flex; gap: 14px; flex-wrap: wrap; }
+.not-list { margin: 20px 0 0; padding-left: 18px; color: var(--text-muted); font-size: 16px; line-height: 1.8; max-width: 680px; }
